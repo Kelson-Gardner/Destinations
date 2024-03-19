@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destinations</title>
+    <link
+      href="{% static 'core/style.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'core/destinations.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div id="container">
+        <div id="top-banner">
+          <h1><a href="{% url 'index'%}">Destinations</a></h1>
+
+          <a href="{% url 'new_destination' %}">New Destination</a>
+
+          <form action="/sessions/destroy/" method="post">
+            <button id="logout">Logout</button>
+          </form>
+        </div>
+      </div>
+      <div id="destination-container">
+        {% if destinations %} {% for destination in destinations %}
+        <div class="destination">
+          <div class="name">
+            <a href="{% url 'edit_destination' id=destination.id%}"
+              >{{destination.name}}</a
+            >
+          </div>
+          <div class="review">
+            <strong>Review:</strong> {{destination.review}}
+          </div>
+
+          <div class="rating">
+            <strong>Rating:</strong> {{destination.rating}}
+          </div>
+
+          <div class="public">
+            <span
+              ><strong>Public:</strong> {%comment%} Filler for
+              syntax{%endcomment%}{% if destination.share_publicly == True%}Yes
+              {% else %} No {% endif %}</span
+            >
+          </div>
+          <form
+            action="/destinations/{{destination.id}}/destroy/"
+            method="post"
+          >
+            <button class="delete">Delete</button>
+          </form>
+        </div>
+        {% endfor %} {% endif %}
+      </div>
+    </main>
+  </body>
+</html>

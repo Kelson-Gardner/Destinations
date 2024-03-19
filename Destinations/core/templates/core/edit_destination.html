@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destinations</title>
+    <link
+      href="{% static 'core/style.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'core/destinations.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div id="container">
+        <div id="top-banner">
+          <h1><a href="{% url 'index'%}">Destinations</a></h1>
+
+          <a href="{% url 'new_destination' %}">New Destination</a>
+
+          <form action="/sessions/destroy/" method="post">
+            <button>Logout</button>
+          </form>
+        </div>
+      </div>
+      <form action="/destinations/{{destination.id}}/" method="post">
+        <div id="input-container">
+            <span>Place</span>
+            {% if place_error %}
+            <div style="color: red; font-size: 12px">
+              Must Enter A Destination Title
+            </div>
+            {% endif %}
+          <div class="create">
+            <input type="text" name="place" id="place" autocomplete="off" value="{{destination.name}}"  />
+          </div>
+          <span>Review</span>
+          {% if review_error %}
+          <div style="color: red; font-size: 12px">
+            Must Enter A Review
+          </div>
+          {% endif %}
+          <div class="create">
+            
+            <textarea type="text" name="review" id="review" >{{destination.review}}</textarea>
+          </div>
+          <span>Rating</span>
+          <div class="create">
+            {% if rating_error %}
+            <div style="color: red; font-size: 12px">Rating Must Be A Number Between 1 and 5</div>
+            {% endif %}
+        <input type="text" name="rating" id="rating" autocomplete="off" value="{{destination.rating}}" />
+        <span style="font-size: 12px">1-5</span>
+          </div>
+          <span>Public</span>
+          <div> 
+            
+            <input type="hidden" name="public" value="False" />
+            <input type="checkbox" name="public" id="public" value="True" {% if destination.share_publicly == True %} checked {% endif %}/>
+          </div>
+          <button>Save</button>
+      </div>
+    </main>
+  </body>
+</html>

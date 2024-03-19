@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destinations</title>
+    <link
+      href="{% static 'core/style.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'core/destinations.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div id="container">
+        <div id="top-banner">
+          <h1><a href="{% url 'index'%}">Destinations</a></h1>
+          {% if session %}
+          <a href="{% url 'new_destination' %}">New Destination</a>
+          <a href="{% url 'destinations'%}">My Destinations</a>
+          <form action="/sessions/destroy/" method="post">
+            <button id="logout">Logout</button>
+          </form>
+
+          {% else %}
+          <div id="signs-container">
+            <a href="{% url 'sign_up' %}">Sign Up</a>
+            <a href="{% url 'sign_in' %}">Sign In</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div id="destination-container">
+        {% if public_destinations %} {% comment %}This is to keep my django
+        template language from ruining itself with prettierasd {% endcomment %}
+        {% for destination in public_destinations %} {%comment%} {% endcomment%}
+        {% if forloop.counter <= 5 %}
+        <div class="destination">
+          <div class="name">{{destination.name}}</div>
+          <div class="review">
+            <strong>Review:</strong> {{destination.review}}
+          </div>
+
+          <div class="rating">
+            <strong>Rating:</strong> {{destination.rating}}
+          </div>
+          <div class="user">
+            <strong>User:</strong>
+            <span style="color: #1434a4">@{{destination.user.name}}</span>
+          </div>
+        </div>
+        {% endif %} {% endfor %} {% endif %}
+      </div>
+    </main>
+  </body>
+</html>

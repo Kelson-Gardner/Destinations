@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destinations</title>
+    <link
+      href="{% static 'core/style.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div id="container">
+        <div id="top-banner">
+          <h1>Sign In</h1>
+        </div>
+      </div>
+      <form action="/sessions/" method="post">
+        <div id="input-container">
+          <span>Email</span>
+          <div class="email">
+            {% if email_error %}
+            <div style="color: red; font-size: 12px">Invalid Email Address</div>
+            {% endif %}
+            <input type="text" name="email" id="email" autocomplete="off" />
+          </div>
+          <span>Password</span>
+          <div class="password">
+            {% if password_error %}
+            <div style="color: red; font-size: 12px">Invalid Password</div>
+            {% endif %}
+            <input
+              type="password"
+              name="password_hash"
+              id="password"
+              autocomplete="off"
+            />
+          </div>
+          <button>Sign In</button>
+        </div>
+
+        <div id="sign_up_sign_in" style="margin-top: 10px">
+          <div style="font-size: 11px; margin-top: 10px">
+            Don't have an account?
+            <a id="mini_sign_up" href="{% url 'sign_up' %}">Sign Up!</a>
+          </div>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

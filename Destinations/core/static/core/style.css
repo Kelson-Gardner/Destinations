@@ -1,0 +1,100 @@
+html {
+  display: flex;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #d9dddc;
+}
+h1 {
+  font-size: 2rem;
+  padding-left: 10px;
+  color: white;
+}
+
+#container {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: #363636;
+  box-shadow: 0 2px 2px black;
+}
+#top-banner {
+  display: flex;
+  align-items: baseline;
+}
+a {
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px black;
+  text-decoration: none;
+  color: black;
+  background-color: #85bcc7;
+}
+a:hover {
+  color: white;
+  background-color: #999da0;
+}
+
+button {
+  margin-top: 10px;
+  border-style: none;
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px black;
+  text-decoration: none;
+  color: black;
+  background-color: #85bcc7;
+}
+
+button:hover {
+  color: white;
+  background-color: #999da0;
+  cursor: pointer;
+}
+
+body #no-tasks {
+  margin-top: 100px;
+  padding-top: 100px;
+  font-size: 100px;
+}
+
+#input-container {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+#mini_sign_up {
+  color: #85bcc7;
+  text-decoration: underline;
+  background-color: #d9dddc;
+  box-shadow: none;
+  font-size: 13px;
+}
+input {
+  width: 20rem;
+}
+#public {
+  width: 1rem;
+}
+textarea {
+  resize: none;
+  height: 10rem;
+  width: 20rem;
+}
+#sign_up_sign_in {
+  display: flex;
+  justify-content: center;
+}
+
+#signs-container {
+  margin-left: auto;
+}
+
+#logout {
+  position: fixed;
+  right: 4rem;
+  top: 1.25rem;
+}
